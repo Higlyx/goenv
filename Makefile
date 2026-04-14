@@ -34,7 +34,7 @@ migrate-create:
 
 migrate-up:
 	@make migrate-action up
-	
+
 
 migrate-down:
 	@make migrate-action down
@@ -50,3 +50,9 @@ migrate-action:
 		-path /migrations \
 		-database postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@todoapp-postgres:5432/${POSTGRES_DB}?sslmode=disable \
 		"$(action)"
+
+env-port-forward:
+	@docker compose up -d port-forwarder
+
+env-port-close:
+	@docker compose down port-forwarder
